@@ -6,6 +6,7 @@ import org.junit.jupiter.api.Test;
 import org.launchcode.techjobs.persistent.controllers.EmployerController;
 import org.launchcode.techjobs.persistent.controllers.SkillController;
 import org.launchcode.techjobs.persistent.models.Employer;
+import org.launchcode.techjobs.persistent.models.Skill;
 import org.launchcode.techjobs.persistent.models.data.EmployerRepository;
 import org.launchcode.techjobs.persistent.models.data.SkillRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -499,26 +500,26 @@ public class TestTaskTwo extends AbstractTest {
     /*
      * Verify that processAddSkillForm saves a new skill to the database
      * */
-//    @Test
-//    public void testNewSkillIsSaved (@Mocked SkillRepository skillRepository, @Mocked Errors errors) throws ClassNotFoundException, NoSuchMethodException, NoSuchFieldException, IllegalAccessException, InvocationTargetException {
-//        Class skillControllerClass = getClassByName("controllers.SkillController");
-//        Method processAddSkillFormMethod = skillControllerClass.getMethod("processAddSkillForm", Skill.class, Errors.class, Model.class);
-//        Method saveMethod = SkillRepository.class.getMethod("save", Object.class);
-//
-//        Skill skill = new Skill();
-//        skill.setName("Java");
-//
-//        new Expectations() {{
-//            saveMethod.invoke(skillRepository, skill);
-//        }};
-//
-//        Model model = new ExtendedModelMap();
-//        SkillController skillController = new SkillController();
-//        Field skillRepositoryField = skillControllerClass.getDeclaredField("skillRepository");
-//        skillRepositoryField.setAccessible(true);
-//        skillRepositoryField.set(skillController, skillRepository);
-//        processAddSkillFormMethod.invoke(skillController, skill, errors, model);
-//    }
+    @Test
+    public void testNewSkillIsSaved (@Mocked SkillRepository skillRepository, @Mocked Errors errors) throws ClassNotFoundException, NoSuchMethodException, NoSuchFieldException, IllegalAccessException, InvocationTargetException {
+        Class skillControllerClass = getClassByName("controllers.SkillController");
+        Method processAddSkillFormMethod = skillControllerClass.getMethod("processAddSkillForm", Skill.class, Errors.class, Model.class);
+        Method saveMethod = SkillRepository.class.getMethod("save", Object.class);
+
+        Skill skill = new Skill();
+        skill.setName("Java");
+
+        new Expectations() {{
+            saveMethod.invoke(skillRepository, skill);
+        }};
+
+        Model model = new ExtendedModelMap();
+        SkillController skillController = new SkillController();
+        Field skillRepositoryField = skillControllerClass.getDeclaredField("skillRepository");
+        skillRepositoryField.setAccessible(true);
+        skillRepositoryField.set(skillController, skillRepository);
+        processAddSkillFormMethod.invoke(skillController, skill, errors, model);
+    }
 
     /*
      * Verifies that displayViewSkill calls findById to retrieve an skill object
